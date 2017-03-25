@@ -1,4 +1,8 @@
 class Users::RegistrationsController < Devise::RegistrationsController
+  def new
+    redirect_to '/'
+  end
+
   def create
     respond_to do |format|
       format.html { super }

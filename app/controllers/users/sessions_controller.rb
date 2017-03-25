@@ -1,4 +1,8 @@
 class Users::SessionsController < Devise::SessionsController
+  # GET /user/sign_in
+  def new
+    redirect_to '/'
+  end
 
   # POST /resource/sign_in
   def create
