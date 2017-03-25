@@ -1,7 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 import { Modal, Button, Menu, Icon, Affix, Input } from 'antd';
 import SignInForm from './User/SignInForm';
-import RegisterForm from './User/RegisterForm';
+import SignUpForm from './User/SignUpForm';
+
 const SubMenu = Menu.SubMenu;
 const MenuItemGroup = Menu.ItemGroup;
 
@@ -11,7 +12,7 @@ class Navbar extends Component {
     this.state = {
       signInVisible: false,
       signUpVisible: false,
-    }
+    };
     this.showSignInModal = this.showSignInModal.bind(this);
     this.showSignUpModal = this.showSignUpModal.bind(this);
     this.hideSignInModal = this.hideSignInModal.bind(this);
@@ -53,6 +54,8 @@ class Navbar extends Component {
         registrationPath,
         loginPath,
         csrfToken,
+        signInError,
+        signUpError,
       },
       logoutUser,
       loginUser,
@@ -72,11 +75,13 @@ class Navbar extends Component {
           { !isSignedIn &&
             <Menu.Item key="signup" className="float-right">
               <a onClick={this.showSignUpModal} className="navbar-logo" rel="noopener noreferrer">Sign up</a>
-              <Modal title="Register Now!" visible={this.state.signUpVisible && !isSignedIn}
+              <Modal
+                title="Register Now!" visible={this.state.signUpVisible && !isSignedIn}
                 onCancel={this.hideSignUpModal} footer={null}
               >
-                <RegisterForm
+                <SignUpForm
                   onFormSubmit={registerUser}
+                  signUpError={signUpError}
                   csrfToken={csrfToken}
                   hideSignUpModal={this.hideSignUpModal}
                 />
@@ -86,12 +91,14 @@ class Navbar extends Component {
           { !isSignedIn &&
             <Menu.Item key="signin" className="float-right">
               <a onClick={this.showSignInModal} className="navbar-logo" rel="noopener noreferrer">Sign in</a>
-              <Modal title="Sign In" visible={this.state.signInVisible && !isSignedIn}
+              <Modal
+                title="Sign In" visible={this.state.signInVisible && !isSignedIn}
                 onCancel={this.hideSignInModal} footer={null}
               >
                 <SignInForm
                   onFormSubmit={loginUser}
                   csrfToken={csrfToken}
+                  signInError={signInError}
                   hideSignInModal={this.hideSignInModal}
                   showSignUpModal={this.showSignUpModal}
                 />

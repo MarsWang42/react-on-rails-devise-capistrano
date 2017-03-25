@@ -1,13 +1,27 @@
 import React from 'react';
-import { Form, Input, Tooltip, Icon, Cascader, Select, Row, Col, Checkbox, Button } from 'antd';
-const FormItem = Form.Item;
-const Option = Select.Option;
+import {
+  Form,
+  Input,
+  Checkbox,
+  Button,
+  Alert,
+} from 'antd';
 
-class RegistrationForm extends React.Component {
-  state = {
-    confirmDirty: false,
-  };
-  handleSubmit = (e) => {
+const FormItem = Form.Item;
+
+class SignUpForm extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      confirmDirty: false,
+    };
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleConfirmBlur = this.handleConfirmBlur.bind(this);
+    this.checkPassword = this.checkPassword.bind(this);
+    this.checkConfirm = this.checkConfirm.bind(this);
+  }
+
+  handleSubmit(e) {
     e.preventDefault();
     const { form, onFormSubmit, csrfToken, hideSignUpModal } = this.props;
     this.props.form.validateFieldsAndScroll((err, values) => {
@@ -16,11 +30,13 @@ class RegistrationForm extends React.Component {
       }
     });
   }
-  handleConfirmBlur = (e) => {
+
+  handleConfirmBlur(e) {
     const value = e.target.value;
     this.setState({ confirmDirty: this.state.confirmDirty || !!value });
   }
-  checkPassword = (rule, value, callback) => {
+
+  checkPassword(rule, value, callback) {
     const form = this.props.form;
     if (value && value !== form.getFieldValue('password')) {
       callback('Two passwords that you enter is inconsistent!');
@@ -28,13 +44,15 @@ class RegistrationForm extends React.Component {
       callback();
     }
   }
-  checkConfirm = (rule, value, callback) => {
+
+  checkConfirm(rule, value, callback) {
     const form = this.props.form;
     if (value && this.state.confirmDirty) {
       form.validateFields(['confirm'], { force: true });
     }
     callback();
   }
+
   render() {
     const { getFieldDecorator } = this.props.form;
     const formItemLayout = {
@@ -107,6 +125,8 @@ class RegistrationForm extends React.Component {
               required: true, message: 'Please input your password!',
             }, {
               validator: this.checkConfirm,
+            }, {
+              min: 6,
             }],
           })(
             <Input type="password" />
@@ -122,6 +142,8 @@ class RegistrationForm extends React.Component {
               required: true, message: 'Please confirm your password!',
             }, {
               validator: this.checkPassword,
+            }, {
+              min: 6,
             }],
           })(
             <Input type="password" onBlur={this.handleConfirmBlur} />
@@ -130,10 +152,25 @@ class RegistrationForm extends React.Component {
         <FormItem {...agreementItemLayout} style={{ marginBottom: 8 }}>
           {getFieldDecorator('agreement', {
             valuePropName: 'checked',
+            rules: [{
+              required: true, message: 'Please read the agreement!',
+            }],
           })(
             <Checkbox>I have read the <a>agreement</a></Checkbox>
           )}
         </FormItem>
+        {
+          this.props.signUpError.email &&
+          <Alert message={`Your Email ${this.props.signUpError.email}`} type="error" />
+        }
+        {
+          this.props.signUpError.password &&
+          <Alert message={`Your Email ${this.props.signUpError.password}`} type="error" />
+        }
+        {
+          this.props.signUpError.username &&
+          <Alert message={`Your Email ${this.props.signUpError.username}`} type="error" />
+        }
         <FormItem {...tailFormItemLayout}>
           <Button type="primary" htmlType="submit" size="large" className="register-form-button">Register</Button>
         </FormItem>
@@ -142,6 +179,6 @@ class RegistrationForm extends React.Component {
   }
 }
 
-const WrappedRegistrationForm = Form.create()(RegistrationForm);
+const WrappedSignUpForm = Form.create()(SignUpForm);
 
-export default WrappedRegistrationForm;
+export default WrappedSignUpForm;

@@ -1,10 +1,22 @@
 import React from 'react';
-import { Form, Icon, Input, Button, Checkbox } from 'antd';
-import axios from 'axios';
+import {
+  Form,
+  Icon,
+  Input,
+  Button,
+  Checkbox,
+  Alert
+} from 'antd';
+
 const FormItem = Form.Item;
 
 class SignInForm extends React.Component {
-  handleSubmit = (e) => {
+  constructor(props) {
+    super(props);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleSubmit(e) {
     e.preventDefault();
     const { form, onFormSubmit, csrfToken, hideSignInModal } = this.props;
     form.validateFields((err, values) => {
@@ -13,6 +25,7 @@ class SignInForm extends React.Component {
       }
     });
   }
+
   render() {
     const { getFieldDecorator } = this.props.form;
     return (
@@ -39,6 +52,10 @@ class SignInForm extends React.Component {
             <Checkbox>Remember me</Checkbox>
           )}
           <a className="login-form-forgot">Forgot password</a>
+          {
+            this.props.signInError &&
+            <Alert message={this.props.signInError} type="error" />
+          }
           <Button type="primary" htmlType="submit" className="login-form-button">
             Log in
           </Button>
