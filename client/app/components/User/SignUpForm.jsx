@@ -160,15 +160,15 @@ class SignUpForm extends React.Component {
           )}
         </FormItem>
         {
-          this.props.signUpError.email &&
+          this.props.signUpError && this.props.signUpError.email &&
           <Alert message={`Your Email ${this.props.signUpError.email}`} type="error" />
         }
         {
-          this.props.signUpError.password &&
+          this.props.signUpError && this.props.signUpError.password &&
           <Alert message={`Your Email ${this.props.signUpError.password}`} type="error" />
         }
         {
-          this.props.signUpError.username &&
+          this.props.signUpError && this.props.signUpError.username &&
           <Alert message={`Your Email ${this.props.signUpError.username}`} type="error" />
         }
         <FormItem {...tailFormItemLayout}>
