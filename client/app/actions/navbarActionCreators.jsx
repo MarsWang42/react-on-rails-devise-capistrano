@@ -50,7 +50,7 @@ export const loginUser = ({ email, password }, csrfToken, hideSignInModal) => (
     }).catch((error) => {
       dispatch({
         type: USER_SIGN_IN_FAILED,
-        data: error.response.data
+        data: error.response.data,
       });
     });
   }
@@ -75,14 +75,13 @@ export const registerUser = ({ email, password, username }, csrfToken, hideSignU
     }).then((respond) => {
       hideSignUpModal();
       dispatch({
-        type: USER_SIGNUP_SUCCEED,
+        type: USER_SIGN_UP_SUCCEED,
         data: respond.data,
       });
     }).catch((error) => {
-      console.log(error.response.data)
       dispatch({
         type: USER_SIGN_UP_FAILED,
-        data: error.response.data
+        data: error.response.data,
       });
     });
   }
