@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
-  root 'hello_world#index'
-  resources :chatrooms
+  root 'react_app#index'
   devise_for :users, path: "user",
     :controllers => {
       :sessions  => "users/sessions",
