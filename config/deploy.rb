@@ -9,7 +9,7 @@ set :deploy_to, '/home/deploy/ror_devise'
 append :linked_files, "config/database.yml", "config/secrets.yml"
 append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "vendor/bundle", "public/system", "public/uploads"
 
-server '127.0.0.1', user: 'deploy', roles: %w{app db web}
+server '107.170.240.6', user: 'deploy', roles: %w{app db web}
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
