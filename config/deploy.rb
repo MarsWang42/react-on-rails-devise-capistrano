@@ -8,11 +8,16 @@ set :deploy_to, '/home/deploy/ror_devise'
 set :default_env, { path: "/home/deploy/.linuxbrew/bin/:$PATH" }
 
 append :linked_files, "config/database.yml", "config/secrets.yml"
-append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "vendor/bundle", "public/system", "public/uploads"
 set :linked_dirs, fetch(:linked_dirs, []).push(
-   ...
+  "log",
+  "tmp/pids",
+  "tmp/cache",
+  "tmp/sockets",
+  "vendor/bundle",
+  "public/system",
+  "public/uploads",
   'node_modules',
-  'client/node_modules',
+  'client/node_modules'
 )
 
 SSHKit.config.command_map[:npm] = "/home/deploy/.linuxbrew/bin/npm"

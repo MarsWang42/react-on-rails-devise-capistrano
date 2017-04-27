@@ -59,7 +59,7 @@
 #     auth_methods: %w(publickey password)
 #     # password: "please use keys"
 #   }
-# Node
+## Node
 set :nvm_type, :user # or :system, depends on your nvm setup
 set :nvm_node, 'v7.6.0' # CHange accordingly
 set :nvm_map_bins, %w{node npm yarn}
