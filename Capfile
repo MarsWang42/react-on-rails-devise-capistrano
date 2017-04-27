@@ -40,9 +40,6 @@ Dir.glob("lib/capistrano/tasks/*.rake").each { |r| import r }
 require 'capistrano/rails'
 require 'capistrano/passenger'
 
-require 'capistrano/nodenv'
-append :nodenv_map_bins, 'bin/yarn'
-
 # If you are using rbenv add these lines:
 require 'capistrano/rbenv'
 set :rbenv_type, :user
