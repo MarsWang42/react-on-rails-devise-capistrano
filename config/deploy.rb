@@ -20,9 +20,6 @@ set :linked_dirs, fetch(:linked_dirs, []).push(
   'client/node_modules'
 )
 
-SSHKit.config.command_map[:npm] = "/home/deploy/.linuxbrew/bin/npm"
-SSHKit.config.command_map[:yarn] = "/home/deploy/.linuxbrew/bin/yarn"
-
 server '107.170.240.6', user: 'deploy', roles: %w{app db web}
 
 # Default branch is :master
