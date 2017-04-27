@@ -5,6 +5,7 @@ set :application, "ror_devise"
 set :repo_url, "git@github.com:Marswang92/react-on-rails-devise-boilerplate.git"
 set :deploy_to, '/home/deploy/ror_devise'
 
+set :default_env, { path: "/home/deploy/.linuxbrew/bin/:$PATH" }
 
 append :linked_files, "config/database.yml", "config/secrets.yml"
 append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "vendor/bundle", "public/system", "public/uploads"
