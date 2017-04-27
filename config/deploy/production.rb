@@ -59,3 +59,28 @@
 #     auth_methods: %w(publickey password)
 #     # password: "please use keys"
 #   }
+# Node
+set :nvm_type, :user # or :system, depends on your nvm setup
+set :nvm_node, 'v7.6.0' # CHange accordingly
+set :nvm_map_bins, %w{node npm yarn}
+
+# Yarn
+set :yarn_target_path, -> { release_path.join('client') } #
+set :yarn_flags, '--production --silent --no-progress'    # default
+set :yarn_roles, :all                                     # default
+set :yarn_env_variables, {}
+
+namespace :webpacker do
+  task :install do
+    on roles(:web) do
+      within release_path.join('client') do
+        with rails_env: fetch(:rails_env) do
+          rake 'react_on_rails:locale'
+          execute :yarn, :run, 'build:production'
+        end
+      end
+    end
+  end
+end
+
+after 'npm:install', 'webpacker:install'
