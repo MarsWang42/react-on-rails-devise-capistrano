@@ -9,7 +9,7 @@ set :deploy_to, '/home/deploy/ror_devise'
 append :linked_files, "config/database.yml", "config/secrets.yml"
 append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "vendor/bundle", "public/system", "public/uploads"
 
-SSHKit.config.command_map[:node] = "/home/deploy/.linuxbrew/bin/node"
+SSHKit.config.command_map[:npm] = "/home/deploy/.linuxbrew/bin/npm"
 
 server '107.170.240.6', user: 'deploy', roles: %w{app db web}
 
