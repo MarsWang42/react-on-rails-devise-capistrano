@@ -29,5 +29,5 @@ node_modules
 # System File
 .DS_Store
 
-config/database.yml
-config/secrets.yml
+/config/database.yml
+/config/secrets.yml
