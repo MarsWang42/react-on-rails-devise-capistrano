@@ -10,6 +10,7 @@ append :linked_files, "config/database.yml", "config/secrets.yml"
 append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "vendor/bundle", "public/system", "public/uploads"
 
 SSHKit.config.command_map[:npm] = "/home/deploy/.linuxbrew/bin/npm"
+SSHKit.config.command_map[:yarn] = "/home/deploy/.linuxbrew/bin/yarn"
 
 server '107.170.240.6', user: 'deploy', roles: %w{app db web}
 
