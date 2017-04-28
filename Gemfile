@@ -60,8 +60,6 @@ gem 'capistrano-passenger', '~> 0.2.0'
 gem 'capistrano-rbenv', '~> 2.1'
 
 # For React on Rails
-gem 'capistrano-nvm'
-gem 'capistrano-npm'
 gem 'capistrano-yarn'
 
 gem 'react_on_rails', '~> 6.8.0'

@@ -40,8 +40,6 @@ Dir.glob("lib/capistrano/tasks/*.rake").each { |r| import r }
 require 'capistrano/rails'
 require 'capistrano/passenger'
 require 'capistrano/linked_files'
-require 'capistrano/nvm'
-require 'capistrano/npm'
 require 'capistrano/yarn'
 
 # If you are using rbenv add these lines:
