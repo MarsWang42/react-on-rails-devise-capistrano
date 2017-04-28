@@ -61,8 +61,8 @@
 #   }
 
 # Yarn
-set :yarn_target_path, -> { release_path.join('client') } #
-set :yarn_flags, ''    # default
-set :yarn_roles, :all                                     # default
+set :yarn_target_path, -> { release_path.join('client') }
+set :yarn_flags, ''
+set :yarn_roles, :all
 set :yarn_env_variables, {}
 
