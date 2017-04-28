@@ -20,9 +20,7 @@ set :linked_dirs, fetch(:linked_dirs, []).push(
   'client/node_modules'
 )
 
-SSHKit.config.command_map[:yarn] = "/home/deploy/.linuxbrew/bin/yarn"
-
-server '107.170.240.6', user: 'deploy', roles: %w{app db web}
+server '127.0.0.1', user: 'deploy', roles: %w{app db web}
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
